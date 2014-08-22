@@ -10,87 +10,87 @@ typedef struct n
 node *head=NULL;
 
 //To insert at the beginning of the list
-void insertatbegin(int ndata)
+void insertatbegin(int newdata)
 {
-	node *p=new node;
-	node *r;
-	r=head;
-	p->data=ndata;
+	node *new_node=new node;
+	node *copy_of_head;
+	copy_of_head=head;
+	new_node->data=newdata;
 	if(head==NULL)
 	{
-		head=p;
-		p->next=NULL;
+		head=new_node;
+		new_node->next=NULL;
 		
 	}
 	else
 	{
-		p->next=r;
-		head=p;
+		new_node->next=copy_of_head;
+		head=new_node;
 	}
 }
 
 //To insert at the end of the list
-void insertatend(int ndata)
+void insertatend(int newdata)
 {
-	node *p=new node;
-	node *r;
-	r=head;
-	p->data=ndata;
-	p->next=NULL;
-	if(r==NULL)
+	node *new_node=new node;
+	node *copy_of_head;
+	copy_of_head=head;
+	new_node->data=newdata;
+	new_node->next=NULL;
+	if(copy_of_head==NULL)
 	{
-		head=p;	
+		head=new_node;	
 	}
 	else
 	{
-		while(r->next!=NULL)
+		while(copy_of_head->next!=NULL)
 		{
-			r=r->next;
+			copy_of_head=copy_of_head->next;
 		}	
-		r->next=p;		
+		copy_of_head->next=new_node;		
 	}
 }
 
 //To delete at the beginning of the list
 void deleteatbegin()
 {
-	node *p;
-	p=head;
-	if(p==NULL)
-		cout<<"Not possible";
-	else if(p->next==NULL)
+	node *copy_of_head;
+	copy_of_head=head;
+	if(copy_of_head==NULL)
+		cout<<"Not possible"<<endl;
+	else if(copy_of_head->next==NULL)
 	{
 		head=NULL;
-		delete p;
+		delete copy_of_head;
 	}
 	else
 	{
-		head=p->next;
-		delete p;
+		head=copy_of_head->next;
+		delete copy_of_head;
 	}
 }
 
 //To delete at the end of the list
 void deleteatend()
 {
-	node *p,*l;
-	p=head;
-	if(p==NULL)
-		cout<<"Not possible";
-	else if(p->next==NULL)
+	node *copy_of_head,*prev;
+	copy_of_head=head;
+	if(copy_of_head==NULL)
+		cout<<"Not possible"<<endl;
+	else if(copy_of_head->next==NULL)
 	{
 		head=NULL;
-		delete p;
+		delete copy_of_head;
 	}
 	else
 	{
-		while(p->next!=NULL)
+		while(copy_of_head->next!=NULL)
 		{
-			l=p;
-			p=p->next;
+			prev=copy_of_head;
+			copy_of_head=copy_of_head->next;
 		}
-		l->next=NULL;
-		delete p;
+		prev->next=NULL;
+		delete copy_of_head;
 	}
 	
 }
@@ -98,12 +98,12 @@ void deleteatend()
 //To display the contents of the list
 void display()
 {
-	node *r;
-	r=head;
-	while(r!=NULL)
+	node *copy_of_head;
+	copy_of_head=head;
+	while(copy_of_head!=NULL)
 	{
-		cout<<r->data<<" ";
-		r=r->next;
+		cout<<copy_of_head->data<<" ";
+		copy_of_head=copy_of_head->next;
 	}
 	cout<<endl;
 }
@@ -111,7 +111,7 @@ void display()
 
 int main()
 {
-	int a,i;
+	int a;
 	char ch;
 	while(1)
 	{
@@ -121,17 +121,17 @@ int main()
 		cout<<"4.Delete at end"<<endl;
 		cout<<"5.Display"<<endl;
 		cout<<"6.Exit"<<endl;
-		cout<<"Enter choice :"<<endl;
+		cout<<"Enter choice :";
 		cin>>ch;
 		switch(ch)
 		{
 			case '1':
-				cout<<"Enter element"<<endl;
+				cout<<"Enter element";
 				cin>>a;
 				insertatbegin(a);
 				break;
 			case '2':
-				cout<<"Enter element"<<endl;
+				cout<<"Enter element";
 				cin>>a;
 				insertatend(a);
 				break;
@@ -145,6 +145,7 @@ int main()
 				display();
 				break;
 			case '6':
+				exit(1);
 				break;
 			default:
 				cout<<"Error"<<endl;
