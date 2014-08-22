@@ -111,33 +111,45 @@ void display()
 
 int main()
 {
-	int a[10],i;
+	int a,i;
 	char ch;
-	cout<<"1.Insert at begin"<<endl;
-	cout<<"2.Insert at end"<<endl;
-	cout<<"3.Delete at begin"<<endl;
-	cout<<"4.Delete at end"<<endl;
-	cout<<"5.Display"<<endl;
-	cout<<"6.Exit"<<endl;
-	cout<<"Enter choice :"<<endl;
-	cout<<"Insert elements"<<endl;
-	for(i=0;i<10;i++)
+	while(1)
 	{
-		cin>>a[i];
+		cout<<"1.Insert at begin"<<endl;
+		cout<<"2.Insert at end"<<endl;
+		cout<<"3.Delete at begin"<<endl;
+		cout<<"4.Delete at end"<<endl;
+		cout<<"5.Display"<<endl;
+		cout<<"6.Exit"<<endl;
+		cout<<"Enter choice :"<<endl;
+		cin>>ch;
+		switch(ch)
+		{
+			case '1':
+				cout<<"Enter element"<<endl;
+				cin>>a;
+				insertatbegin(a);
+				break;
+			case '2':
+				cout<<"Enter element"<<endl;
+				cin>>a;
+				insertatend(a);
+				break;
+			case '3':
+				deleteatbegin();
+				break;
+			case '4':
+				deleteatend();
+				break;
+			case '5':
+				display();
+				break;
+			case '6':
+				break;
+			default:
+				cout<<"Error"<<endl;
+		}
 	}
-	for(i=0;i<10;i+=2)
-	{
-		insertatend(a[i]);
-	}
-	cout<<"Linked list elements"<<endl;
-	display();
-	cout<<"Delete at begin"<<endl;
-	deleteatbegin();
-	display();
-	cout<<"Delete at end"<<endl;
-	deleteatend();
-	display();
-	system("pause");
 	return 0;
 }
 
